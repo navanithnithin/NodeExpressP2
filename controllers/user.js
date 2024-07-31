@@ -21,8 +21,9 @@ async function handleDeleteUserById(res, req) {
 
 async function handleCreateNewUser(res, req) {
     const body = req.body;
+    console.log(body);
     if (!body || !body.first_name || !body.last_name || !body.gender || !body.email || !body.job_title) {
-        return res.status(400).json({ msg: " All fields are required" })
+        return res.json({ msg: " All fields are required" })
     }
     const result = await User.create({
         firstName: body.first_name,
