@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { handleGetAllUsers, handleGetUserById, handleUpdateUserById, handleDeleteUserById,
-    handleCreateNewUser
+    handleCreateNewUser,
 } = require("../controllers/user");
 
-router.route('/')
-.get(handleGetAllUsers).post( handleCreateNewUser)
+router.route('/').get(handleGetAllUsers).post(handleCreateNewUser)
 
 router.route('/:id')
     .get(handleGetUserById)

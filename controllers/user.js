@@ -10,20 +10,20 @@ async function handleGetUserById(req, res) {
     if (!user) return res.status(404).json({ error: "User not found" })
 }
 
-async function handleUpdateUserById(res, res) {
+async function handleUpdateUserById(req, res) {
     await User.findByIdAndUpdate(req.params.id, { firstName: "Nithin" });
     return res.json({ status: "Pending" })
 }
-async function handleDeleteUserById(res, req) {
+async function handleDeleteUserById(req, res) {
     await User.findOneAndDelete(req.params.id)
     return res.json({ status: " user deleted successfully" })
 }
 
-async function handleCreateNewUser(res, req) {
+async function handleCreateNewUser(req, res) {
     const body = req.body;
-    console.log(body);
+    // console.log(body);
     if (!body || !body.first_name || !body.last_name || !body.gender || !body.email || !body.job_title) {
-        return res.json({ msg: " All fields are required" })
+        return res.status(400).json({ msg: " All fields are required" })
     }
     const result = await User.create({
         firstName: body.first_name,
