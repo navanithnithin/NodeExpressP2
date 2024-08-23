@@ -1,13 +1,15 @@
 const User = require("../models/user");
 
 async function handleGetAllUsers(req, res) {
-    const allDbUserData = await User.find({});
+    const allDbUserData = await User.find();
     return res.json(allDbUserData);
 }
 
 async function handleGetUserById(req, res) {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found" })
+    else{
+        return res.json(user);}
 }
 
 async function handleUpdateUserById(req, res) {
